@@ -1,0 +1,5 @@
+export default {
+	padding: '10px',
+	mainColor: 'green',
+	secondaryColor: 'blue',
+};
