@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { TextField } from '@material-ui/core';
 import vars from '../../Assets/variables';
 
-export const LoginBase = styled.div`
+export const LoginBase = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -26,9 +26,4 @@ export const LoginBase = styled.div`
 		text-decoration: none;
 		color: ${vars.secondaryColor};
 	}
-`;
-
-export const Input = styled(TextField)`
-	width: 100%;
-	margin: 0 0 30px !important;
 `;

@@ -1,6 +1,7 @@
 import axios from 'axios';
+import env from '../env.json';
 
-const BaseURL = 'https://localhost';
+const BaseURL = env.apiUrl;
 
 export const RestMethod = {
 	POST: 'POST',
@@ -11,15 +12,15 @@ export const RestMethod = {
 
 interface IRestConfig {
 	path: string;
-	request: any;
+	request?: any;
 	dynamicHeaders?: string;
 }
 
-export function RestFunc(
+export const RestFunc = (
 	config: IRestConfig = { path: '', request: RestMethod.GET, dynamicHeaders: '' },
 	pathVariables?: any,
 	bodyPayload?: any
-) {
+) => {
 	const parsePath = (): void => {
 		let params = config.path.match(/{.+?}/g);
 		let newPath = config.path;
@@ -33,14 +34,14 @@ export function RestFunc(
 		config.path = newPath;
 	};
 
-	const init = (): void => {
+	const init = () => {
 		parsePath();
-		axios({
+		return axios({
 			method: config.request,
 			url: BaseURL + config.path,
 			data: { ...bodyPayload },
 		});
 	};
 
-	init();
-}
+	return init();
+};

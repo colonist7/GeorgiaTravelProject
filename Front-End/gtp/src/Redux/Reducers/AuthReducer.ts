@@ -1,5 +1,7 @@
-import { UserInformation } from '../../Models/AuthModels';
+import { RestFunc } from '../../Engine/ResourceEngine';
+import { LoginData, RegisterData, UserInformation } from '../../Models/AuthModels';
 import { IAction } from '../../Models/Common';
+import { SendLogin, SendRegister } from '../../Resources/AuthResource';
 
 const LOGIN = 'LOGIN';
 const SET_AUTH = 'SET_AUTH';
@@ -18,12 +20,12 @@ const initialState: AuthStore = {
 	userInfo: {},
 };
 
-export const ContactReducer = (state = initialState, action: IAction) => {
+export const AuthReducer = (state = initialState, action: IAction) => {
 	switch (action.type) {
 		case LOGIN:
 			return { ...state };
 		case SET_AUTH:
-			return { ...state };
+			return { ...state, authToken: action.payload };
 		case SEND_REGISTER:
 			return { ...state, userInfo: action.payload };
 		case CONFIRM_PASSWORD:
@@ -33,7 +35,14 @@ export const ContactReducer = (state = initialState, action: IAction) => {
 	}
 };
 
-export const register = (formData: UserInformation) => (dispatch: any) => {
-	//SOME API CALL
-	dispatch({ type: SEND_REGISTER, payload: formData });
+export const sendRegister = (formData: RegisterData) => (dispatch: any) => {
+	SendRegister(formData).then((res: any) => {
+		dispatch({ type: SEND_REGISTER, payload: res.body.authToken });
+	});
+};
+
+export const sendLogin = (formData: LoginData) => (dispatch: any) => {
+	SendLogin(formData).then((res: any) => {
+		dispatch({ type: LOGIN, payload: res.body.authToken });
+	});
 };

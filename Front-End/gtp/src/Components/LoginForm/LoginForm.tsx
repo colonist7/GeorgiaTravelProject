@@ -1,28 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { LoginData } from '../../Models/AuthModels';
+import { sendLogin as SendLogin } from '../../Redux/Reducers/AuthReducer';
 import LoginFormShell from './LoginForm.shell';
 
-interface LoginFormProps {}
+interface LoginFormProps {
+	sendLogin(formdata: LoginData): void;
+}
 
-export interface LoginFormShellProps {}
+export interface LoginFormShellProps extends LoginFormProps {}
 
-const LoginForm = (props: LoginFormProps) => {
-	const {} = props;
-
-	return <LoginFormShell />;
+const LoginForm = ({ sendLogin }: LoginFormProps) => {
+	return <LoginFormShell sendLogin={sendLogin} />;
 };
 
 const mapStateToProps = (state: any) => {
-	let {} = state.LoginFormReducer;
+	let {} = state.AuthReducer;
 
 	return {};
 };
 
 const mapDispatchToProps = (dispatch: any) => {
 	return {
-		// fetchInfo: (msg = 'ACTION') => {
-		// 	dispatch(fetchLoginFormInformation());
-		// },
+		sendLogin: (formdata: LoginData) => {
+			dispatch(SendLogin(formdata));
+		},
 	};
 };
 

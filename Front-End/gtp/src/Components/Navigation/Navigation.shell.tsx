@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row } from 'react-bootstrap';
 import { NavigationBase, Logo, FlexBetween } from './Navigation.style';
 import { useMainRoutes } from '../../Routing/Main/MainRoutes';
+import Container from '@material-ui/core/Container/Container';
+import { Grid } from '@material-ui/core';
 
 const Navigation = () => {
 	const { Home, Tours, About, Contact, Login } = useMainRoutes();
@@ -10,7 +11,7 @@ const Navigation = () => {
 	return (
 		<NavigationBase>
 			<Container>
-				<Row>
+				<Grid>
 					<FlexBetween>
 						<Logo src={'https://georgianfamily.de/img/Logo_w.png'} />
 						<ul>
@@ -32,7 +33,7 @@ const Navigation = () => {
 							</li>
 						</ul>
 					</FlexBetween>
-				</Row>
+				</Grid>
 			</Container>
 		</NavigationBase>
 	);
