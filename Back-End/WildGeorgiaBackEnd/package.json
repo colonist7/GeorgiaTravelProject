@@ -1,18 +1,31 @@
 {
-  "name": "testapp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "fs": "0.0.1-security",
-    "mysql": "^2.18.1"
-  }
+	"name": "testapp",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "npm run build && node build/server.js",
+		"start:dev": "nodemon",
+		"build": "rimraf ./build && tsc"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"fs": "0.0.1-security",
+		"howler": "^2.2.1",
+		"mediaserver": "^0.1.1",
+		"mysql": "^2.18.1"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.8",
+		"@types/node": "^14.14.6",
+		"nodemon": "^2.0.6",
+		"rimraf": "^3.0.2",
+		"ts-node": "^9.0.0",
+		"typescript": "^4.0.5"
+	}
 }
